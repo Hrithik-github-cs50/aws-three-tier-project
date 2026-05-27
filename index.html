@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AWS Security Audit Dashboard</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f1117;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #4ade80;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: 6px; height: 6px;
+      background: #4ade80;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    h1 {
+      font-size: 40px;
+      font-weight: 700;
+      color: #f8fafc;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    h1 span { color: #60a5fa; }
+
+    .subtitle {
+      font-size: 16px;
+      color: #94a3b8;
+      line-height: 1.7;
+      margin-bottom: 48px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .card {
+      background: #1e2433;
+      border: 1px solid #2d3748;
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748b;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .meta-item {
+      background: #0f1117;
+      border: 1px solid #2d3748;
+      border-radius: 10px;
+      padding: 16px 12px;
+    }
+
+    .meta-label {
+      font-size: 11px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .meta-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 36px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .btn:active { transform: translateY(0); }
+
+    .btn svg {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+    }
+
+    .security-note {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+      font-size: 12px;
+      color: #4ade80;
+      margin-top: 16px;
+    }
+
+    .security-note svg {
+      width: 14px; height: 14px;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #475569;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="badge">
+      <span class="dot"></span>
+      Live Security Audit
+    </div>
+
+    <h1>Three-Tier AWS<br/><span>Security Report</span></h1>
+
+    <p class="subtitle">
+      This architecture implements a high-availability, three-tier web infrastructure
+      on AWS with automated CIS benchmark auditing via Prowler.
+      Region: ap-south-1 (Mumbai)
+    </p>
+
+    <div class="card">
+      <div class="card-title">Architecture Overview</div>
+      <div class="meta-grid">
+        <div class="meta-item">
+          <div class="meta-label">Region</div>
+          <div class="meta-value">ap-south-1</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Availability Zones</div>
+          <div class="meta-value">2 (AZ-a, AZ-b)</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Auditor</div>
+          <div class="meta-value">Prowler v4</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Web Tier</div>
+          <div class="meta-value">ALB + ASG</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">App Tier</div>
+          <div class="meta-value">EC2 Private</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Data Tier</div>
+          <div class="meta-value">RDS MySQL</div>
+        </div>
+      </div>
+
+      
+        class="btn"
+        href="https://d2g78c8jb09idc.cloudfront.net/latest-report.html"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        </svg>
+        View Live Security Report
+      </a>
+
+      <div class="security-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0110 0v4"/>
+        </svg>
+        Served over HTTPS via Amazon CloudFront · Report stored in private S3
+      </div>
+    </div>
+
+    <div class="footer">
+      Built on AWS · Three-Tier Secure Architecture · VPC 10.0.0.0/16
+    </div>
+
+  </div>
+</body>
+</html>
