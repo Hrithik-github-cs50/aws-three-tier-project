@@ -2,6 +2,8 @@
 
 > AWS Region: ap-south-1 (Mumbai) | VPC: 10.0.0.0/16
 
+🚀 **Live Dashboard:** [View the Live Security Audit Report Here](https://hrithik-github-cs50.github.io/aws-three-tier-project/)
+
 ## Architecture Overview
 
 <img width="1536" height="1024" alt="finallll archuuuu" src="https://github.com/user-attachments/assets/3c601606-a8f9-4930-b560-2cb7d59f4a94" />
